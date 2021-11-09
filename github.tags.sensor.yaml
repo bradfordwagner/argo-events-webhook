@@ -1,0 +1,66 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: github-tags
+  namespace: argo-events
+spec:
+  dependencies:
+    - name: test-dep
+      eventSourceName: bradfordwagner
+      eventName: bradfordwagner
+      filters:
+        data:
+        - path: body.ref_type
+          type: string
+          value:
+            - "tag"
+          template: '{{ default "not_tag" .Input }}'
+  triggers:
+    - template:
+        name: tags
+        k8s:
+          operation: create
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: github-tags-
+                namespace: argo
+              spec:
+                entrypoint: main
+                arguments:
+                  parameters:
+                    - name: git_repo
+                    - name: git_ref
+                templates:
+                  - name: main
+                    inputs:
+                      parameters:
+                        - name: git_repo
+                        - name: git_ref
+                    steps:
+                      - - name: git
+                          templateRef:
+                            name: flavor-git-template
+                            template: main
+                          arguments:
+                            parameters:
+                              - name: git_repo
+                                value: "{{inputs.parameters.git_repo}}"
+                              - name: git_version
+                                value: "{{inputs.parameters.git_ref}}"
+                              - name: git_ref_type
+                                value: "tags"
+          parameters:
+            - src:
+                dependencyName: test-dep
+                dataTemplate: "{{ .Input.body.repository.clone_url }}"
+              dest: spec.arguments.parameters.0.value
+            - src:
+                dependencyName: test-dep
+                dataTemplate: "{{ .Input.body.ref }}"
+              dest: spec.arguments.parameters.1.value
+      retryStrategy:
+        steps: 3
+

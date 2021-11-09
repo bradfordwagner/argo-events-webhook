@@ -1,0 +1,66 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: github-branches
+  namespace: argo-events
+spec:
+  dependencies:
+    - name: test-dep
+      eventSourceName: bradfordwagner
+      eventName: bradfordwagner
+      filters:
+        data:
+        - path: body.ref
+          type: string
+          value:
+            - "true"
+          template: '{{ hasPrefix "refs/heads/" .Input }}'
+  triggers:
+    - template:
+        name: branches
+        k8s:
+          operation: create
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: github-branches-
+                namespace: argo
+              spec:
+                entrypoint: main
+                arguments:
+                  parameters:
+                   - name: git_repo
+                   - name: git_ref
+                templates:
+                  - name: main
+                    inputs:
+                      parameters:
+                        - name: git_repo
+                        - name: git_ref
+                    steps:
+                      - - name: git
+                          templateRef:
+                            name: flavor-git-template
+                            template: main
+                          arguments:
+                            parameters:
+                              - name: git_repo
+                                value: "{{inputs.parameters.git_repo}}"
+                              - name: git_version
+                                value: "{{inputs.parameters.git_ref}}"
+                              - name: git_ref_type
+                                value: "branches"
+          parameters:
+            - src:
+                dependencyName: test-dep
+                dataTemplate: "{{ .Input.body.repository.clone_url }}"
+              dest: spec.arguments.parameters.0.value
+            - src:
+                dependencyName: test-dep
+                dataTemplate: '{{ trimPrefix "refs/heads/" .Input.body.ref }}'
+              dest: spec.arguments.parameters.1.value
+      retryStrategy:
+        steps: 3
+
