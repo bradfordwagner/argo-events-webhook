@@ -29,6 +29,13 @@ spec:
         # You will need to create an Ingress or Openshift Route for the event-source service so that it can be reached from GitHub.
         url: http://bradfordwagner.com:12000
 #       url: http://20.85.1.224:12000
+        serverCertSecret:
+          name: eventsource-tls
+          key: certificate
+        # k8s secret that contains the private key
+        serverKeySecret:
+          name: eventsource-tls
+          key: private_key
       # type of events to listen to.
       # following listens to everything, hence *
       # You can find more info on https://developer.github.com/v3/activity/events/types/
@@ -54,7 +61,7 @@ spec:
 
       # type of the connection between event-source and Github.
       # You should set it to false to avoid man-in-the-middle and other attacks.
-      insecure: true
+      insecure: false
       # Determines if notifications are sent when the webhook is triggered
       active: true
       # The media type used to serialize the payloads
