@@ -19,18 +19,18 @@ spec:
         endpoint: /push
         port: "12000"
         method: POST
-        url: https://bradfordwagner.com:12000
-        serverCertSecret:
-          name: eventsource-tls
-          key: certificate
-        serverKeySecret:
-          name: eventsource-tls
-          key: private_key
+        url: http://bradfordwagner.com:12000
+#        serverCertSecret:
+#          name: eventsource-tls
+#          key: certificate
+#        serverKeySecret:
+#          name: eventsource-tls
+#          key: private_key
       events:
         - "*"
       apiToken:
         name: github-access-token
         key: token
-      insecure: false
+      insecure: true
       active: true
       contentType: json
