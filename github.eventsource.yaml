@@ -15,6 +15,7 @@ spec:
             - container-argo
             - container-ansible
             - container-go-builder
+            - ks
       webhook:
         endpoint: /push
         port: "12000"
