@@ -14,7 +14,7 @@ spec:
           type: string
           value:
             - "tag"
-          template: '{{`{{` default "not_tag" .Input }}`}}'
+          template: '{{`{{ default "not_tag" .Input }}`}}'
   triggers:
     - template:
         name: tags
@@ -55,11 +55,11 @@ spec:
           parameters:
             - src:
                 dependencyName: test-dep
-                dataTemplate: "{{`{{` .Input.body.repository.clone_url }}`}}"
+                dataTemplate: "{{`{{ .Input.body.repository.clone_url }}`}}"
               dest: spec.arguments.parameters.0.value
             - src:
                 dependencyName: test-dep
-                dataTemplate: "{{`{{` .Input.body.ref }}`}}"
+                dataTemplate: "{{`{{ .Input.body.ref }}`}}"
               dest: spec.arguments.parameters.1.value
       retryStrategy:
         steps: 3
