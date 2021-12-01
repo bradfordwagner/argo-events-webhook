@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
   name: github-branches
-  namespace: argo-events
+  namespace: {{ .Release.Namespace }}
 spec:
   dependencies:
     - name: test-dep
@@ -14,7 +14,7 @@ spec:
           type: string
           value:
             - "true"
-          template: '{{ hasPrefix "refs/heads/" .Input }}'
+          template: '{{`{{ hasPrefix "refs/heads/" .Input }}`}}'
   triggers:
     - template:
         name: branches
@@ -47,19 +47,19 @@ spec:
                           arguments:
                             parameters:
                               - name: git_repo
-                                value: "{{inputs.parameters.git_repo}}"
+                                value: "{{`{{inputs.parameters.git_repo}}`}}"
                               - name: git_version
-                                value: "{{inputs.parameters.git_ref}}"
+                                value: "{{`{{inputs.parameters.git_ref}}`}}"
                               - name: git_ref_type
                                 value: "branches"
           parameters:
             - src:
                 dependencyName: test-dep
-                dataTemplate: "{{ .Input.body.repository.clone_url }}"
+                dataTemplate: "{{`{{` .Input.body.repository.clone_url }}`}}"
               dest: spec.arguments.parameters.0.value
             - src:
                 dependencyName: test-dep
-                dataTemplate: '{{ trimPrefix "refs/heads/" .Input.body.ref }}'
+                dataTemplate: '{{`{{` trimPrefix "refs/heads/" .Input.body.ref }}`}}'
               dest: spec.arguments.parameters.1.value
       retryStrategy:
         steps: 3
