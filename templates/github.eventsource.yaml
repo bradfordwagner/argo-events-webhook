@@ -16,6 +16,7 @@ spec:
             - container-ansible
             - container-go-builder
             - ks
+            - container-manifest-tool
       webhook:
         endpoint: /push
         port: "12000"
