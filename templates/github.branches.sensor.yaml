@@ -4,6 +4,8 @@ metadata:
   name: github-branches
   namespace: {{ .Release.Namespace }}
 spec:
+  template:
+    serviceAccountName: {{ .Release.Name }}-sensor
   dependencies:
     - name: test-dep
       eventSourceName: bradfordwagner

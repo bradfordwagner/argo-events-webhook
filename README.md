@@ -14,8 +14,5 @@ echo "${host}:${port}" | pbcopy
 
 ## Helpers
 ```bash
-# sensors
-watchexec -cr "kubectl delete -n argo-events -f github.branches.sensor.yaml; kubectl apply -n argo-events -f github.branches.sensor.yaml"
-watchexec -cr "kubectl delete -n argo-events -f github.tags.sensor.yaml; kubectl apply -n argo-events -f github.tags.sensor.yaml"
-
+helm upgrade -n argo-events -i events-webhook .
 ```
