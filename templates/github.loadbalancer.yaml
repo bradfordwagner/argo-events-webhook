@@ -4,10 +4,19 @@ metadata:
   name: github-webhook
   namespace: {{ .Release.Namespace }}
 spec:
-  ports:
-    - port: 12000
-      protocol: TCP
-      targetPort: 12000
+# original azure implementation
+# ports:
+#   - port: 12000
+#     protocol: TCP
+#     targetPort: 12000
+# type: LoadBalancer
   selector:
     eventsource-name: bradfordwagner
-  type: LoadBalancer
+  type: NodePort
+  ports:
+    - name: http
+      # this maps to the kind configuration
+      nodePort: {{ .Values.github.eventsource.nodePort }}
+      targetPort: {{ .Values.github.eventsource.port }}
+      port: {{ .Values.github.eventsource.port }}
+

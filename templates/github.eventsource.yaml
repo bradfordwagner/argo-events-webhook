@@ -19,9 +19,9 @@ spec:
             - container-manifest-tool
       webhook:
         endpoint: /push
-        port: "12000"
+        port: {{ .Values.github.eventsource.port | quote }}
         method: POST
-        url: http://bradfordwagner.com:12000
+        url: http://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
 #        serverCertSecret:
 #          name: eventsource-tls
 #          key: certificate
