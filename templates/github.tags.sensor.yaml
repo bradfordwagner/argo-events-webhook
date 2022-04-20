@@ -30,6 +30,8 @@ spec:
                 generateName: github-tags-
                 namespace: argo
               spec:
+                podGC:
+                  strategy: OnPodSuccess # delete pods when workflow is successful
                 entrypoint: main
                 arguments:
                   parameters:
