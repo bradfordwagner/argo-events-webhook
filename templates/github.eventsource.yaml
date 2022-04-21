@@ -7,16 +7,7 @@ metadata:
 spec:
   github:
     bradfordwagner:
-      repositories:
-        - owner: bradfordwagner
-          names:
-            - container-base
-            - container-kaniko
-            - container-argo
-            - container-ansible
-            - container-go-builder
-            - ks
-            - container-manifest-tool
+      repositories: {{- .Values.github.repositories | toYaml | nindent 9 }}
       webhook:
         endpoint: /push
         port: {{ .Values.github.eventsource.port | quote }}

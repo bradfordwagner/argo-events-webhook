@@ -6,3 +6,15 @@ github:
     port: 30000
     nodePort: 30000
 
+  repositories:
+    - owner: bradfordwagner
+      names:
+        - container-base
+        - container-kaniko
+        - container-argo
+        - container-ansible
+        - container-go-builder
+        - ks
+        - container-manifest-tool
+        - container-ansible-role-builder
+
