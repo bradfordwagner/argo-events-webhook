@@ -17,4 +17,5 @@ github:
         - ks
         - container-manifest-tool
         - container-ansible-role-builder
+        - container-vault-mirror
 
