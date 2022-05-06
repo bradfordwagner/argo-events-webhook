@@ -18,4 +18,5 @@ github:
         - container-manifest-tool
         - container-ansible-role-builder
         - container-vault
+        - container-vault-k8s-auth
 
