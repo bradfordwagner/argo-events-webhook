@@ -5,6 +5,20 @@ metadata:
   name: bradfordwagner
   namespace: {{ .Release.Namespace }}
 spec:
+  template:
+    # include csi secret from vault
+    container:
+      volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
+    volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: github-access-token
   github:
     bradfordwagner:
       repositories: {{- .Values.github.repositories | toYaml | nindent 9 }}
@@ -22,8 +36,30 @@ spec:
       events:
         - "*"
       apiToken:
-        name: github-access-token
+        # pull in secret from csi storage class below
+        name: vault-github-access-token
         key: token
       insecure: true
       active: true
       contentType: json
+---
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: github-access-token
+  namespace: {{ .Release.Namespace }}
+spec:
+  provider: vault
+  secretObjects:
+    - secretName: vault-github-access-token
+      type: Opaque
+      data:
+        - objectName: token
+          key: token
+  parameters:
+    roleName: bradford_argo_events_reader
+    objects: |
+      - objectName: token
+        secretPath: secret/data/bradford_argo_events
+        secretKey: github_access_token
+
