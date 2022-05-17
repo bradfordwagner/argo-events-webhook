@@ -28,13 +28,13 @@ spec:
         method: POST
         url: https://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
         serverCertSecret:
-          name: webhook-pki
+          name: github-access
           key: certificate
         serverKeySecret:
-          name: webhook-pki
+          name: github-access
           key: private-key
         webhookSecret:
-          name: webhook-pki
+          name: github-access
           key: github-secret
       events:
         - "*"
@@ -55,20 +55,17 @@ metadata:
 spec:
   provider: vault
   secretObjects:
-    - secretName: webhook-pki
+    - secretName: github-access
       type: Opaque
       data:
+        - objectName: token
+          key: token
         - objectName: private-key
           key: private-key
         - objectName: certificate
           key: certificate
         - objectName: githhub-secret
           key: github-secret
-    - secretName: github-access-token
-      type: Opaque
-      data:
-        - objectName: token
-          key: token
   parameters:
     roleName: bradford_argo_events_reader
     objects: |
