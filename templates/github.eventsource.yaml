@@ -37,7 +37,7 @@ spec:
         - "*"
       apiToken:
         # pull in secret from csi storage class below
-        name: vault-github-access-token
+        name: github-access-token
         key: token
       insecure: true
       active: true
@@ -51,7 +51,7 @@ metadata:
 spec:
   provider: vault
   secretObjects:
-    - secretName: vault-github-access-token
+    - secretName: github-access-token
       type: Opaque
       data:
         - objectName: token
