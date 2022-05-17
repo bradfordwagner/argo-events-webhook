@@ -26,7 +26,7 @@ spec:
         endpoint: /push
         port: {{ .Values.github.eventsource.port | quote }}
         method: POST
-        url: http://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
+        url: https://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
         serverCertSecret:
           name: webhook-pki
           key: certificate
