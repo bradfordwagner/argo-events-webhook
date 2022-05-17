@@ -39,7 +39,8 @@ spec:
         # pull in secret from csi storage class below
         name: github-access-token
         key: token
-      insecure: true
+      insecure: false
+#     insecure: true
       active: true
       contentType: json
 ---
