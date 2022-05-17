@@ -33,9 +33,9 @@ spec:
         serverKeySecret:
           name: webhook-pki
           key: private-key
-       webhookSecret:
-         name: webhook-pki
-         key: github-secret
+        webhookSecret:
+          name: webhook-pki
+          key: github-secret
       events:
         - "*"
       apiToken:
