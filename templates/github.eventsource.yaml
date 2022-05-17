@@ -65,8 +65,8 @@ spec:
           key: private-key
         - objectName: certificate
           key: certificate
-        - objectName: githhub-secret
-          key: github-secret
+#       - objectName: githhub-secret
+#         key: github-secret
   parameters:
     roleName: bradford_argo_events_reader
     objects: |
