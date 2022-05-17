@@ -18,7 +18,7 @@ spec:
           driver: secrets-store.csi.k8s.io
           readOnly: true
           volumeAttributes:
-            secretProviderClass: argo-eveents-webhook
+            secretProviderClass: argo-events-webhook
   github:
     bradfordwagner:
       repositories: {{- .Values.github.repositories | toYaml | nindent 9 }}
