@@ -73,13 +73,13 @@ spec:
       - objectName: token
         secretPath: secret/data/bradford_argo_events
         secretKey: github_access_token
-#     - objectName: private-key
-#       secretPath: secret/data/bradford_argo_events
-#       secretKey: private_key
-#     - objectName: certificate
-#       secretPath: secret/data/bradford_argo_events
-#       secretKey: certificate
-#     - objectName: github-secret
-#       secretPath: secret/data/bradford_argo_events
-#       secretKey: github_secret
+      - objectName: private-key
+        secretPath: secret/data/bradford_argo_events
+        secretKey: private_key
+      - objectName: certificate
+        secretPath: secret/data/bradford_argo_events
+        secretKey: certificate
+      - objectName: github-secret
+        secretPath: secret/data/bradford_argo_events
+        secretKey: github_secret
 
