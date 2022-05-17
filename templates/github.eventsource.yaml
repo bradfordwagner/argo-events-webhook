@@ -40,7 +40,7 @@ spec:
         - "*"
       apiToken:
         # pull in secret from csi storage class below
-        name: github-access-token
+        name: github-access
         key: token
       insecure: false
 #     insecure: true
