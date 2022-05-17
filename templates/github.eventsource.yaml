@@ -61,8 +61,8 @@ spec:
       data:
         - objectName: token
           key: token
-#       - objectName: private-key
-#         key: private-key
+        - objectName: private-key
+          key: private-key
 #       - objectName: certificate
 #         key: certificate
 #       - objectName: githhub-secret
