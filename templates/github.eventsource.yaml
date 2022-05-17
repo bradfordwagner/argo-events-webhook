@@ -26,25 +26,25 @@ spec:
         endpoint: /push
         port: {{ .Values.github.eventsource.port | quote }}
         method: POST
-        url: http://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
-#       url: https://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
-#       serverCertSecret:
-#         name: github-access
-#         key: certificate
-#       serverKeySecret:
-#         name: github-access
-#         key: private-key
-#       webhookSecret:
-#         name: github-access
-#         key: github-secret
+#       url: http://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
+        url: https://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
+        serverCertSecret:
+          name: github-access
+          key: certificate
+        serverKeySecret:
+          name: github-access
+          key: private-key
+        webhookSecret:
+          name: github-access
+          key: github-secret
       events:
         - "*"
       apiToken:
         # pull in secret from csi storage class below
         name: github-access
         key: token
-#     insecure: false
-      insecure: true
+      insecure: false
+#     insecure: true
       active: true
       contentType: json
 ---
