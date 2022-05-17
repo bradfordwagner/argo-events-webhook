@@ -26,24 +26,25 @@ spec:
         endpoint: /push
         port: {{ .Values.github.eventsource.port | quote }}
         method: POST
-        url: https://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
-        serverCertSecret:
-          name: github-access
-          key: certificate
-        serverKeySecret:
-          name: github-access
-          key: private-key
-        webhookSecret:
-          name: github-access
-          key: github-secret
+        url: http://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
+#       url: https://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
+#       serverCertSecret:
+#         name: github-access
+#         key: certificate
+#       serverKeySecret:
+#         name: github-access
+#         key: private-key
+#       webhookSecret:
+#         name: github-access
+#         key: github-secret
       events:
         - "*"
       apiToken:
         # pull in secret from csi storage class below
         name: github-access
         key: token
-      insecure: false
-#     insecure: true
+#     insecure: false
+      insecure: true
       active: true
       contentType: json
 ---
@@ -60,25 +61,25 @@ spec:
       data:
         - objectName: token
           key: token
-        - objectName: private-key
-          key: private-key
-        - objectName: certificate
-          key: certificate
-        - objectName: githhub-secret
-          key: github-secret
+#       - objectName: private-key
+#         key: private-key
+#       - objectName: certificate
+#         key: certificate
+#       - objectName: githhub-secret
+#         key: github-secret
   parameters:
     roleName: bradford_argo_events_reader
     objects: |
       - objectName: token
         secretPath: secret/data/bradford_argo_events
         secretKey: github_access_token
-      - objectName: private-key
-        secretPath: secret/data/bradford_argo_events
-        secretKey: private_key
-      - objectName: certificate
-        secretPath: secret/data/bradford_argo_events
-        secretKey: certificate
-      - objectName: github-secret
-        secretPath: secret/data/bradford_argo_events
-        secretKey: github_secret
+#     - objectName: private-key
+#       secretPath: secret/data/bradford_argo_events
+#       secretKey: private_key
+#     - objectName: certificate
+#       secretPath: secret/data/bradford_argo_events
+#       secretKey: certificate
+#     - objectName: github-secret
+#       secretPath: secret/data/bradford_argo_events
+#       secretKey: github_secret
 
