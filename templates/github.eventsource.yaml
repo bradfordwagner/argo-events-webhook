@@ -27,12 +27,12 @@ spec:
         port: {{ .Values.github.eventsource.port | quote }}
         method: POST
         url: http://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
-         serverCertSecret:
-           name: webhook-pki
-           key: certificate
-         serverKeySecret:
-           name: webhook-pki
-           key: private-key
+        serverCertSecret:
+          name: webhook-pki
+          key: certificate
+        serverKeySecret:
+          name: webhook-pki
+          key: private-key
       events:
         - "*"
       apiToken:
