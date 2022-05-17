@@ -9,16 +9,16 @@ spec:
     # include csi secret from vault
     container:
       volumeMounts:
-        - name: secrets-store-inline
-          mountPath: "/mnt/secrets-store"
+        - name: github-token
+          mountPath: /mnt/github_token
           readOnly: true
     volumes:
-      - name: secrets-store-inline
+      - name: github-token
         csi:
           driver: secrets-store.csi.k8s.io
           readOnly: true
           volumeAttributes:
-            secretProviderClass: github-access-token
+            secretProviderClass: argo-eveents-webhook
   github:
     bradfordwagner:
       repositories: {{- .Values.github.repositories | toYaml | nindent 9 }}
@@ -27,12 +27,12 @@ spec:
         port: {{ .Values.github.eventsource.port | quote }}
         method: POST
         url: http://{{ .Values.github.eventsource.host }}:{{ .Values.github.eventsource.port }}
-#        serverCertSecret:
-#          name: eventsource-tls
-#          key: certificate
-#        serverKeySecret:
-#          name: eventsource-tls
-#          key: private_key
+         serverCertSecret:
+           name: webhook-pki
+           key: certificate
+         serverKeySecret:
+           name: webhook-pki
+           key: private-key
       events:
         - "*"
       apiToken:
@@ -46,11 +46,18 @@ spec:
 apiVersion: secrets-store.csi.x-k8s.io/v1
 kind: SecretProviderClass
 metadata:
-  name: github-access-token
+  name: argo-events-webhook
   namespace: {{ .Release.Namespace }}
 spec:
   provider: vault
   secretObjects:
+    - secretName: webhook-pki
+      type: Opaque
+      data:
+        - objectName: private-key
+          key: private-key
+        - objectName: certificate
+          key: certificate
     - secretName: github-access-token
       type: Opaque
       data:
@@ -62,4 +69,10 @@ spec:
       - objectName: token
         secretPath: secret/data/bradford_argo_events
         secretKey: github_access_token
+      - objectName: private-key
+        secretPath: secret/data/bradford_argo_events
+        secretKey: private_key
+      - objectName: certificate
+        secretPath: secret/data/bradford_argo_events
+        secretKey: certificate
 
