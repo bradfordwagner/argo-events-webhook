@@ -21,4 +21,5 @@ github:
         - container-vault-k8s-auth
         - container-terraform
         - ansible-role-helloworld
+        - tf-vault-infra
 
