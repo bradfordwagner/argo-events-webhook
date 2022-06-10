@@ -19,5 +19,6 @@ github:
         - container-ansible-role-builder
         - container-vault
         - container-vault-k8s-auth
+        - container-terraform
         - ansible-role-helloworld
 
