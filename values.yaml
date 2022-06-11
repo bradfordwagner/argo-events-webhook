@@ -22,4 +22,5 @@ github:
         - container-terraform
         - ansible-role-helloworld
         - tf-vault-infra
+        - tf-testbed
 
