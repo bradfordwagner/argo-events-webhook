@@ -23,4 +23,5 @@ github:
         - ansible-role-helloworld
         - tf-vault-infra
         - tf-testbed
+        - tf-vault-policy
 
