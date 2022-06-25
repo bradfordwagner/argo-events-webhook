@@ -24,4 +24,5 @@ github:
         - tf-vault-infra
         - tf-testbed
         - tf-vault-policy
+        - go-azure-blob-cli
 
