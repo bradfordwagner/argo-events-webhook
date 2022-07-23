@@ -24,6 +24,7 @@ github:
         - tf-vault-infra
         - tf-testbed
         - tf-vault-policy
+        - tf-az-infra
         - go-azure-blob-cli
         - ansible-role-azure-blob-cli
 
