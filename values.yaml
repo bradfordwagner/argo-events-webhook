@@ -20,6 +20,7 @@ github:
         - container-vault
         - container-vault-k8s-auth
         - container-terraform
+        - container-redis
         - ansible-role-helloworld
         - tf-vault-infra
         - tf-testbed
