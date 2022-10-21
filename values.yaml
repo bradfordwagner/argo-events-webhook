@@ -30,4 +30,5 @@ github:
         - ansible-role-azure-blob-cli
         - ansible-role-gitops-toolkit
         - go-threadpool
+        - gh-template-go-lib
 
