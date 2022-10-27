@@ -26,10 +26,15 @@ github:
         - tf-testbed
         - tf-vault-policy
         - tf-az-infra
-        - go-azure-blob-cli
         - ansible-role-azure-blob-cli
         - ansible-role-gitops-toolkit
+
+        # go app
+        - go-azure-blob-cli
+
+        # go libs
         - go-threadpool
+        - go-util
 
         - gh-template-go-lib
         - gh-template-mirror-image
