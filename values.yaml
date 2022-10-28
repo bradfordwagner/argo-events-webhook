@@ -33,6 +33,7 @@ github:
         - go-azure-blob-cli
 
         # go libs
+        - go-kafka-dao
         - go-threadpool
         - go-util
 
