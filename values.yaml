@@ -38,6 +38,8 @@ github:
         - go-threadpool
         - go-util
 
+        # gh templates
+        - gh-template-go-cli
         - gh-template-go-lib
         - gh-template-mirror-image
 
