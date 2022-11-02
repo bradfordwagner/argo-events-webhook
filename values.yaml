@@ -14,7 +14,6 @@ github:
         - container-argo
         - container-ansible
         - container-go-builder
-        - ks
         - container-manifest-tool
         - container-ansible-role-builder
         - container-vault
@@ -30,7 +29,10 @@ github:
         - ansible-role-gitops-toolkit
 
         # go app
+        - ks
         - go-azure-blob-cli
+        - go-cli-jumpdir
+
 
         # go libs
         - go-kafka-dao
