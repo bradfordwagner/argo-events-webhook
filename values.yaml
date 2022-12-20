@@ -43,4 +43,5 @@ github:
         - gh-template-go-cli
         - gh-template-go-lib
         - gh-template-mirror-image
+        - gh-template-ansible-role
 
