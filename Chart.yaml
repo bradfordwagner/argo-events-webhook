@@ -1,4 +1,4 @@
 apiVersion: v2
 name: "github.bradfordwagner.argo.events.webhook"
 type: application
-version: 1.13.0
+version: 1.14.0
