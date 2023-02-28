@@ -29,6 +29,7 @@ github:
         - ansible-role-gitops-toolkit
         - ansible-role-jumpdir
         - devtainer
+        - container-secrets-store-csi-driver
 
         # go app
         - ks
