@@ -41,6 +41,9 @@ github:
         - go-threadpool
         - go-util
 
+        # build smoketests
+        - cicd-smoketests
+
         # gh templates
         - gh-template-go-cli
         - gh-template-go-lib
