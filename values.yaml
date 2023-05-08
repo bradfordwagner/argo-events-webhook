@@ -51,4 +51,5 @@ github:
         - gh-template-ansible-role
         - gh-template-ansible-playbook
         - gh-template-tf-module
+        - gh-template-tf-workspaces
 
