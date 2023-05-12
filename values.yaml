@@ -21,15 +21,18 @@ github:
         - container-terraform
         - container-redis
         - ansible-role-helloworld
-        - tf-vault-infra
-        - tf-testbed
-        - tf-vault-policy
-        - tf-az-infra
         - ansible-role-azure-blob-cli
         - ansible-role-gitops-toolkit
         - ansible-role-jumpdir
         - devtainer
         - container-secrets-store-csi-driver
+
+        # terraform
+        - tf-az-infra
+        - tf-testbed
+        - tf-vault-infra
+        - tf-vault-policy
+        - tf-ws-k8s-infra
 
         # go app
         - ks
