@@ -33,6 +33,7 @@ github:
         - tf-vault-infra
         - tf-vault-policy
         - tf-ws-k8s-infra
+        - tf-m-az-acr
 
         # go app
         - ks
