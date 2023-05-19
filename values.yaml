@@ -34,6 +34,7 @@ github:
         - tf-vault-policy
         - tf-ws-k8s-infra
         - tf-m-az-acr
+        - tf-ws-az-acr
 
         # go app
         - ks
