@@ -52,6 +52,8 @@ github:
 
         # helm charts
         - chart-argo-workflows
+        - chart-namespaces
+        - argo-events-webhook
 
         # gh templates
         - gh-template-go-cli
