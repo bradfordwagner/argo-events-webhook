@@ -50,6 +50,9 @@ github:
         # build smoketests
         - cicd-smoketests
 
+        # helm charts
+        - chart-argo-workflows
+
         # gh templates
         - gh-template-go-cli
         - gh-template-go-lib
