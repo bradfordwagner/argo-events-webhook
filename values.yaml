@@ -51,9 +51,10 @@ github:
         - cicd-smoketests
 
         # helm charts
-        - chart-argo-workflows
-        - chart-namespaces
         - argo-events-webhook
+        - chart-argo-workflows
+        - chart-argocd-init-contexts
+        - chart-namespaces
 
         # gh templates
         - gh-template-go-cli
