@@ -55,6 +55,7 @@ github:
         - chart-argo-workflows
         - chart-argocd-init-contexts
         - chart-namespaces
+        - chart-vault-k8s-auth
 
         # gh templates
         - gh-template-go-cli
