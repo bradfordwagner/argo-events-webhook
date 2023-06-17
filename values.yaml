@@ -57,6 +57,7 @@ github:
         - chart-namespaces
         - chart-vault-k8s-auth
         - deploy-chart-vault
+        - deploy-secrets-store-csi-driver
 
         # gh templates
         - gh-template-go-cli
