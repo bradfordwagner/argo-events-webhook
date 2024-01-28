@@ -28,6 +28,10 @@ spec:
               kind: Workflow
               metadata:
                 generateName: github-tags-
+                # todo: allow this to be another namespace "cicd" or "workflow-executions" or "build"
+                # the workflow.yaml may be able to set the serviceAccountName
+                # workflow+workflowtemplate allow for spec.serviceAccountName
+                # this is our ticket to not using default accounts anymore
                 namespace: argo
               spec:
                 podGC:
