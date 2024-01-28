@@ -41,6 +41,7 @@ github:
         - ks
         - go-azure-blob-cli
         - go-cli-jumpdir
+        - go-cli-gf
 
         # go libs
         - go-kafka-dao
