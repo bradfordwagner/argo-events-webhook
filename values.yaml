@@ -27,6 +27,7 @@ github:
         - ansible-role-jumpdir
         - devtainer
         - container-secrets-store-csi-driver
+        - container-kmonad
 
         # terraform
         - tf-az-infra
