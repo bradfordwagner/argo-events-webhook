@@ -21,9 +21,10 @@ github:
         - container-terraform
         - container-redis
         - container-helm
-        - ansible-role-helloworld
         - ansible-role-azure-blob-cli
+        - ansible-role-docker-buildkit
         - ansible-role-gitops-toolkit
+        - ansible-role-helloworld
         - ansible-role-jumpdir
         - devtainer
         - container-secrets-store-csi-driver
